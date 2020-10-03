@@ -2,6 +2,12 @@
 
 A new Flutter project.
 
+Created-
+- login page
+- Dropdown menu
+- bottom navigation bar
+- trivia page
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
