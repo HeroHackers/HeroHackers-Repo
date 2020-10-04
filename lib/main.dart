@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 // import 'package:hack/bar.dart';
 import 'package:hack/login.dart';
 import 'package:backdrop/backdrop.dart';
+import './question.dart';
+import './answer.dart';
 
 void main() {
   runApp(MyApp());
@@ -190,7 +192,7 @@ class Quiz extends StatelessWidget {
                 })
           ],
         ),
-        body: Quizquestions(),
+        body: HeroHacks(),
       ),
     );
   }
@@ -256,5 +258,75 @@ class _ContactusState extends State<Contactus> {
   @override
   Widget build(BuildContext context) {
     return Scaffold();
+  }
+}
+
+class HeroHacks extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return _HeroHacksState();
+  }
+}
+
+class _HeroHacksState extends State<HeroHacks> {
+  var _questionIndex = 0;
+
+  void question() {
+    setState(() {
+      if (_questionIndex < 4) {
+        _questionIndex = _questionIndex + 1;
+      }
+
+      if (_questionIndex == 4) {
+        _questionIndex = 0;
+      }
+    });
+    print(_questionIndex);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    var questions = [
+      {
+        'questionText': 'On a scale from 1 to 10, \nHow are you feeling today?',
+        'answers': ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
+      },
+      {
+        'questionText': 'What is your current mood?',
+        'answers': [
+          'Happy',
+          'Sad',
+          'Motivated',
+          'Angry',
+          'Disappointed',
+          'Tired',
+          'Hungry'
+        ]
+      },
+      {
+        'questionText': 'Did you eat today?',
+        'answers': ['Yes', 'No', 'I don\'t have an appetite', 'Other']
+      },
+      {
+        'questionText': 'Did you talk to anyone today?',
+        'answers': ['Yes', 'No', 'Other']
+      },
+    ];
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        body: Column(
+          children: [
+            Question(
+              questions[_questionIndex]['questionText'],
+            ),
+            ...(questions[_questionIndex]['answers'] as List<String>)
+                .map((answer) {
+              return Answer(question, answer);
+            }).toList(),
+          ],
+        ),
+      ),
+    );
   }
 }
