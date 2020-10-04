@@ -1,13 +1,6 @@
-<<<<<<< HEAD
 # hack
 
 A new Flutter project.
-
-Created-
-- login page
-- Dropdown menu
-- bottom navigation bar
-- trivia page
 
 ## Getting Started
 
@@ -21,7 +14,3 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter, view our
 [online documentation](https://flutter.dev/docs), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
-=======
-# HeroHackers-Repo
-Mental Health Awareness app
->>>>>>> 39f44ad869935611c95640ac1f538b3d211664aa
