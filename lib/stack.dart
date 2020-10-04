@@ -26,11 +26,11 @@ class ExampleHomePage extends StatefulWidget {
 class _ExampleHomePageState extends State<ExampleHomePage>
     with TickerProviderStateMixin {
   List<Widget> widgets = [
-    Card1("who are you ?"),
-    Card1("how are you ?"),
-    Card1("what are you ?"),
-    Card1("where are you ?"),
-    Card1("why are you ?"),
+    Card1("Is your mood good now?"),
+    Card1("Did you ate food today ?"),
+    Card1("Did you talk to anyone today?"),
+    Card1("are you feeling happy now?"),
+    Card1("how are you,fine?"),
   ];
 
   @override
