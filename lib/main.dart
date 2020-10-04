@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:hack/contactus.dart';
 // import 'package:hack/bar.dart';
 import 'package:hack/login.dart';
 import 'package:backdrop/backdrop.dart';
-import './question.dart';
-import './answer.dart';
+import 'package:hack/stack.dart';
+import 'globals.dart' as globals;
 
 void main() {
   runApp(MyApp());
@@ -27,16 +28,30 @@ class MyHomePage extends StatelessWidget {
       appBar: BackdropAppBar(),
       frontLayer: Column(
         children: [
-          SizedBox(),
+          SizedBox(
+            height: 100,
+          ),
           Center(
             child: Text(
               "Mental Health",
               style: TextStyle(fontSize: 40, color: Colors.blue),
             ),
           ),
+          SizedBox(
+            height: 50,
+          ),
           Center(
             child: Text(
               "Hello Heroes\nStart your hacking now",
+              style: TextStyle(fontSize: 25),
+            ),
+          ),
+          SizedBox(
+            height: 50,
+          ),
+          Center(
+            child: Text(
+              "Your Mental Score:\n               ${globals.score}",
               style: TextStyle(fontSize: 25),
             ),
           ),
@@ -47,7 +62,7 @@ class MyHomePage extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.of(context).push(
-              MaterialPageRoute(builder: (BuildContext context) => Quiz()));
+              MaterialPageRoute(builder: (BuildContext context) => YourApp()));
         },
         child: Icon(Icons.add),
         elevation: 2.0,
@@ -171,162 +186,6 @@ class Draw extends StatelessWidget {
           title: Text('Logout'),
         ),
       ],
-    );
-  }
-}
-
-class Quiz extends StatelessWidget {
-  const Quiz({Key key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        appBar: AppBar(
-          actions: [
-            IconButton(
-                icon: Icon(Icons.remove),
-                onPressed: () {
-                  Navigator.pop(context);
-                })
-          ],
-        ),
-        body: HeroHacks(),
-      ),
-    );
-  }
-}
-
-class Quizquestions extends StatefulWidget {
-  @override
-  _QuizquestionsState createState() => _QuizquestionsState();
-}
-
-class _QuizquestionsState extends State<Quizquestions> {
-  static const widgets = [
-    Text("who are you?"),
-    Text("how are you?"),
-    Text("where are you?"),
-    // Field(),
-  ];
-  @override
-  Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: widgets.length,
-      child: Builder(
-        builder: (BuildContext context) => Padding(
-          padding: EdgeInsets.all(8.0),
-          child: Column(
-            children: [
-              TabPageSelector(),
-              Expanded(
-                child: IconTheme(
-                  data: IconThemeData(size: 128, color: Colors.blue),
-                  child: TabBarView(
-                    children: widgets,
-                  ),
-                ),
-              ),
-              RaisedButton(
-                onPressed: () {
-                  final TabController controller =
-                      DefaultTabController.of(context);
-                  if ((controller.index + 1) != widgets.length) {
-                    controller.animateTo(controller.index + 1);
-                  } else {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (BuildContext context) => MyHomePage()));
-                  }
-                },
-                child: Text("Continue"),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class Contactus extends StatefulWidget {
-  @override
-  _ContactusState createState() => _ContactusState();
-}
-
-class _ContactusState extends State<Contactus> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold();
-  }
-}
-
-class HeroHacks extends StatefulWidget {
-  @override
-  State<StatefulWidget> createState() {
-    return _HeroHacksState();
-  }
-}
-
-class _HeroHacksState extends State<HeroHacks> {
-  var _questionIndex = 0;
-
-  void question() {
-    setState(() {
-      if (_questionIndex < 4) {
-        _questionIndex = _questionIndex + 1;
-      }
-
-      if (_questionIndex == 4) {
-        _questionIndex = 0;
-      }
-    });
-    print(_questionIndex);
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    var questions = [
-      {
-        'questionText': 'On a scale from 1 to 10, \nHow are you feeling today?',
-        'answers': ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
-      },
-      {
-        'questionText': 'What is your current mood?',
-        'answers': [
-          'Happy',
-          'Sad',
-          'Motivated',
-          'Angry',
-          'Disappointed',
-          'Tired',
-          'Hungry'
-        ]
-      },
-      {
-        'questionText': 'Did you eat today?',
-        'answers': ['Yes', 'No', 'I don\'t have an appetite', 'Other']
-      },
-      {
-        'questionText': 'Did you talk to anyone today?',
-        'answers': ['Yes', 'No', 'Other']
-      },
-    ];
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        body: Column(
-          children: [
-            Question(
-              questions[_questionIndex]['questionText'],
-            ),
-            ...(questions[_questionIndex]['answers'] as List<String>)
-                .map((answer) {
-              return Answer(question, answer);
-            }).toList(),
-          ],
-        ),
-      ),
     );
   }
 }
